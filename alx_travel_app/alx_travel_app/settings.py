@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db()
+    'default': env.db('default', default='psql:///postgres:@localhost:5432/listings'),
 }
 
 
