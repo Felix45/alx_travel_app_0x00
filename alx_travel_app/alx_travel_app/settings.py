@@ -81,7 +81,14 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('default', default='psql:///postgres:@localhost:5432/listings'),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DB_NAME', default='listings'),
+        'USER': env('DB_USER', default='root'),
+        'PASSWORD': env('DB_PASSWORD', default=''),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default='3306'),
+    },
 }
 
 
